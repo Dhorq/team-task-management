@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Dhorq/team-task-management/models"
+	"github.com/Dhorq/team-task-management/utils"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -72,7 +73,13 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Login successful", "user": gin.H{"id": user.ID, "name": user.Name, "email": user.Email}})
+	token, err := utils.GenerateToken(user.ID, user.Email)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Login successful", "token": token, "user": gin.H{"id": user.ID, "name": user.Name, "email": user.Email}})
 }
 
 func GetMe(c *gin.Context) {

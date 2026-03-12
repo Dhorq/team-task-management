@@ -15,4 +15,7 @@ func SetupRoutes(r *gin.Engine) {
 	// Protected routes
 	api := r.Group("/api")
 	api.Use(middleware.AuthMiddleware())
+	{
+		api.GET("/me", controllers.GetMe)
+	}
 }
