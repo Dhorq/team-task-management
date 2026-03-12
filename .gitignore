@@ -1,0 +1,87 @@
+# ========================
+# ENVIRONMENT & SECRETS
+# ========================
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ========================
+# GO / GIN / GORM (Backend)
+# ========================
+# Binary output
+backend/bin/
+backend/*.exe
+backend/*.out
+
+# Go build cache
+backend/vendor/
+
+# Air live reload (kalau pakai air)
+backend/tmp/
+.air.toml
+
+# Go test cache
+*.test
+*.prof
+
+# ========================
+# NODE / REACT (Frontend)
+# ========================
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.pnp
+frontend/.pnp.js
+
+# Vite
+frontend/.vite/
+
+# React testing
+frontend/coverage/
+
+# ========================
+# DOCKER
+# ========================
+# Kalau pakai .env untuk docker
+docker-compose.override.yml
+
+# ========================
+# DATABASE
+# ========================
+*.db
+*.sqlite
+*.sqlite3
+postgres_data/
+
+# ========================
+# OS FILES
+# ========================
+# macOS
+.DS_Store
+.AppleDouble
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Linux
+*~
+
+# ========================
+# IDE & EDITOR
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# ========================
+# LOGS
+# ========================
+*.log
+logs/
+backend/logs/
+frontend/logs/
