@@ -74,3 +74,19 @@ func Login(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Login successful", "user": gin.H{"id": user.ID, "name": user.Name, "email": user.Email}})
 }
+
+func GetMe(c *gin.Context) {
+	userID := c.MustGet("user_id").(uint)
+
+	var user models.User
+	if err := models.DB.First(&user, userID).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"id":    user.ID,
+		"name":  user.Name,
+		"email": user.Email,
+	})
+}
